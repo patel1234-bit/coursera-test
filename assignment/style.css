@@ -1,0 +1,83 @@
+/* Base styling */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.5em; /* 75% larger than base */
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.box {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  padding: 40px 15px 15px 15px;
+  margin: 10px;
+  position: relative;
+  float: left;
+  color: #000;
+}
+
+.section-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffa500;
+  border: 1px solid black;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 1.25em; /* 25% larger */
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 992px) {
+  .box {
+    width: 31.33%;
+    margin: 1%;
+  }
+}
+
+/* Tablet: 2 columns + 1 full width */
+@media (min-width: 768px) and (max-width: 991px) {
+  .box {
+    width: 48%;
+    margin: 1%;
+  }
+
+  .box:nth-child(3) {
+    width: 98%;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .box {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* Optional: Custom colors for each section title */
+#chicken .section-title {
+  background-color: #ff9999;
+}
+
+#beef .section-title {
+  background-color: #99ccff;
+}
+
+#sushi .section-title {
+  background-color: #99ff99;
+}
