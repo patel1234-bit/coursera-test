@@ -1,0 +1,85 @@
+/* Base styling */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.5em; /* 75% larger than base */
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Box styling (content card) */
+.box {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  padding: 40px 15px 15px 15px;
+  margin-bottom: 20px;
+  position: relative;
+  color: #000;
+  height: 700px; /* Keep sections tall as required */
+}
+
+/* Section title styling */
+.section-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffa500;
+  border: 1px solid black;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+/* Optional: Custom colors for each section title */
+#chicken .section-title {
+  background-color: #ff9999;
+}
+
+#beef .section-title {
+  background-color: #99ccff;
+}
+
+#sushi .section-title {
+  background-color: #99ff99;
+}
+
+/* Responsive subline text */
+.text-muted {
+  font-size: 1.2em;
+}
+@media (max-width: 767px) {
+  .dropdown-menu {
+    width: 100%;
+    background-color: #eee;
+    border-radius: 0;
+    border: 1px solid #ccc;
+  }
+  .dropdown-menu > li > a {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+.back-to-top {
+  display: block;
+  margin-top: 20px;
+  text-align: right;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #007bff;
+}
+.back-to-top:hover {
+  color: #0056b3;
+}
