@@ -1,0 +1,89 @@
+/* Reset some default spacing */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fafafa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #d9534f !important; /* Bootstrap's danger red */
+}
+
+.navbar-nav > li > a {
+  font-weight: 500;
+}
+
+/* Page title section */
+h1 {
+  font-size: 2.5em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #d9534f;
+}
+
+.text-muted {
+  font-size: 1.1em;
+}
+
+/* Box (menu item section) styling */
+.box {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  min-height: 300px;
+}
+
+.section-title {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #5bc0de; /* Bootstrap info blue */
+}
+
+/* Back to top button */
+.back-to-top {
+  margin-top: 15px;
+}
+
+.back-to-top.btn {
+  background-color: #5bc0de;
+  border: none;
+  color: white;
+}
+
+.back-to-top.btn:hover {
+  background-color: #31b0d5;
+  color: white;
+}
+
+/* Footer */
+footer {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2em;
+  }
+  .box {
+    padding: 15px;
+  }
+  .section-title {
+    font-size: 1.4em;
+  }
+}
