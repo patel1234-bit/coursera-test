@@ -1,114 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food, LLC</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>David Chu's China Bistro</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body id="top">
-
-  <!-- Header & Navbar -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+<body>
+  <!-- Header -->
   <header>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle button -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
-          </button>
-          <a class="navbar-brand" href="#top">Food, LLC</a>
-        </div>
+    <nav id="header-nav" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <!-- Logo -->
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+          <img id="logo-img" src="resturant-logo.png" alt="Logo" style="height:50px;" class="me-2">
+          <div>
+            <h1 class="h5 mb-0">David Chu's China Bistro</h1>
+            <p class="mb-0 small">
+              <img src="star-k-logo.png" alt="Kosher certification" style="height:20px;">
+              <span>Kosher Certified</span>
+            </p>
+          </div>
+        </a>
 
-        <!-- Navigation links -->
-        <div class="collapse navbar-collapse" id="main-nav">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#chicken">Chicken</a></li>
-            <li><a href="#beef">Beef</a></li>
-            <li><a href="#sushi">Sushi</a></li>
+        <!-- Navbar Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsable-nav" aria-controls="collapsable-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div id="collapsable-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html"><i class="bi bi-house"></i> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="$dc.loadMenuCategories();"><i class="bi bi-egg-fried"></i> Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="bi bi-award"></i> Awards</a>
+            </li>
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link fw-bold" href="tel:410-602-5008">410-602-5008</a>
+              <div class="text-muted small text-center">* We Deliver</div>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <!-- Page Title -->
-  <div class="container text-center">
-    <h1>Our Menu</h1>
-    <p class="text-muted">Explore our delicious options crafted with love</p>
+  <!-- Call button (mobile only) -->
+  <div id="call-btn" class="d-lg-none text-center my-2">
+    <a class="btn btn-success" href="tel:410-602-5008">
+      <i class="bi bi-telephone-fill"></i> 410-602-5008
+    </a>
+  </div>
+  <div id="xs-deliver" class="text-center d-lg-none mb-3">* We Deliver</div>
+
+  <!-- Main content -->
+  <div id="main-content" class="container my-5">
+    <!-- Content will be dynamically loaded -->
   </div>
 
-  <!-- Main Content -->
-  <main class="container">
-    <div class="row">
-
-      <!-- Chicken -->
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <section class="box" id="chicken">
-          <h2 class="section-title">Chicken</h2>
-          <p>
-            Tender, juicy chicken cooked with aromatic spices and herbs. A classic favorite for all ages. 
-            Served with fresh vegetables and homemade sauces. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Quisque quis lacus nec nisl malesuada blandit. Donec fringilla dui non purus vestibulum pretium.
-          </p>
-          <a href="#top" class="back-to-top btn btn-default btn-sm">Back to Top</a>
-        </section>
-      </div>
-
-      <!-- Beef -->
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <section class="box" id="beef">
-          <h2 class="section-title">Beef</h2>
-          <p>
-            Slow-cooked beef with rich, savory flavors that melt in your mouth. Perfect for a hearty meal. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra nibh nec enim varius faucibus. 
-            Sed vehicula augue nec volutpat fermentum.
-          </p>
-          <a href="#top" class="back-to-top btn btn-default btn-sm">Back to Top</a>
-        </section>
-      </div>
-
-      <!-- Sushi -->
-      <div class="col-md-4 col-sm-12 col-xs-12">
-        <section class="box" id="sushi">
-          <h2 class="section-title">Sushi</h2>
-          <p>
-            Freshly prepared sushi rolls with the finest fish and ingredients. A taste of Japan on your plate. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies turpis in eros hendrerit, 
-            in pulvinar magna ullamcorper.
-          </p>
-          <a href="#top" class="back-to-top btn btn-default btn-sm">Back to Top</a>
-        </section>
-      </div>
-
-    </div>
-  </main>
-
   <!-- Footer -->
-  <footer class="text-center" style="margin-top: 20px; padding: 10px; background-color: #f8f8f8;">
-    <p>&copy; 2025 Food, LLC | Designed for Coursera Module 3</p>
+  <footer class="bg-dark text-light pt-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- Hours -->
+        <section id="hours" class="col-sm-4 mb-3">
+          <h6>Hours:</h6>
+          <p class="mb-1">Sun-Thurs: 11:15am - 10:00pm</p>
+          <p class="mb-1">Fri: 11:15am - 2:30pm</p>
+          <p class="mb-0">Saturday Closed</p>
+        </section>
+        <!-- Address -->
+        <section id="address" class="col-sm-4 mb-3">
+          <h6>Address:</h6>
+          <p class="mb-1">7105 Reisterstown Road<br>Baltimore, MD 21215</p>
+          <p class="small">* Delivery area within 3-4 miles, with minimum order of $20 plus $3 charge for all deliveries.</p>
+        </section>
+        <!-- Testimonials -->
+        <section id="testimonials" class="col-sm-4 mb-3">
+          <p>"The best Chinese restaurant I've been to! And that's saying a lot, since I've been to many!"</p>
+          <p>"Amazing food! Great service! Couldn't ask for more! I'll be back again and again!"</p>
+        </section>
+      </div>
+      <div class="text-center py-3 border-top border-light mt-3">&copy; Copyright David Chu's China Bistro 2016</div>
+    </div>
   </footer>
 
-  <!-- jQuery & Bootstrap JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <!-- Smooth Scroll for Back to Top -->
-  <script>
-    $(document).ready(function(){
-      $('.back-to-top').click(function(e){
-        e.preventDefault();
-        $('html, body').animate({scrollTop: 0}, 'slow');
-      });
-    });
-  </script>
-
+  <!-- JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="ajax-utils.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
