@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ved Patel — Web Developer &amp; UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEAD9;
+    --paper-2:#E7E1CC;
+    --ink:#16233A;
+    --ink-soft:#3E4F68;
+    --blue:#2B5A8C;
+    --blue-deep:#0F2138;
+    --copper:#B5652F;
+    --grid:rgba(22,35,58,0.09);
+    --card:#F7F4E9;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* corner registration marks — blueprint drafting convention, used on major panels */
+  .reg{position:relative;}
+  .reg::before, .reg::after, .reg .rb, .reg .rc{
+    content:""; position:absolute; width:14px; height:14px; pointer-events:none;
+  }
+  .reg::before{ top:-1px; left:-1px; border-top:1px solid var(--ink-soft); border-left:1px solid var(--ink-soft);}
+  .reg::after{ top:-1px; right:-1px; border-top:1px solid var(--ink-soft); border-right:1px solid var(--ink-soft);}
+  .reg .rb{ bottom:-1px; left:-1px; border-bottom:1px solid var(--ink-soft); border-left:1px solid var(--ink-soft);}
+  .reg .rc{ bottom:-1px; right:-1px; border-bottom:1px solid var(--ink-soft); border-right:1px solid var(--ink-soft);}
+
+  /* nav */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,234,217,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--ink); }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1120px; margin:0 auto;}
+  .brand{font-family:'Space Grotesk'; font-weight:700; font-size:1.05rem; letter-spacing:0.02em;}
+  .brand span{color:var(--copper);}
+  .navlinks{display:flex; gap:28px; font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.03em; text-transform:uppercase;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .15s, color .15s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--ink); border-color:var(--copper);}
+
+  /* hero */
+  .hero{padding:92px 0 64px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center;}
+  .eyebrow{font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--copper); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; display:flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--copper);}
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.6rem); line-height:0.98; margin-bottom:20px;}
+  .hero p.lead{font-size:1.08rem; color:var(--ink-soft); max-width:46ch; line-height:1.6; margin-bottom:30px;}
+  .hero-meta{display:flex; flex-wrap:wrap; gap:10px 22px; font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--ink-soft); margin-bottom:34px;}
+  .hero-meta b{color:var(--ink); font-weight:500;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:0.82rem; letter-spacing:0.02em;
+    padding:13px 22px; border-radius:var(--radius); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;
+    border:1px solid var(--ink);
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--copper);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{transform:translate(-2px,-2px); box-shadow:3px 3px 0 var(--ink);}
+
+  /* schematic node diagram — signature element */
+  .schema{aspect-ratio:1/1; width:100%;}
+  .schema svg{width:100%; height:100%;}
+  .schema-node circle{fill:var(--card); stroke:var(--ink); stroke-width:1.4;}
+  .schema-node text{font-family:'IBM Plex Mono'; font-size:10.5px; fill:var(--ink); text-transform:uppercase; letter-spacing:0.04em;}
+  .schema-line{stroke:var(--ink-soft); stroke-width:1; fill:none; stroke-dasharray:3 3;}
+  .schema-pulse{stroke:var(--copper); stroke-width:2; fill:none; stroke-dasharray:6 500; animation:pulse 5.5s linear infinite;}
+  @keyframes pulse{ to{ stroke-dashoffset:-506; } }
+  .schema-center circle{fill:var(--blue-deep); stroke:var(--copper); stroke-width:1.6;}
+  .schema-center text{fill:var(--paper); font-weight:500;}
+
+  section{padding:76px 0; position:relative;}
+  .rule{border:none; border-top:1px dashed var(--ink-soft); position:relative; margin:0;}
+  .tick-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--ink-soft); padding:6px 28px; max-width:1120px; margin:0 auto; opacity:0.7;}
+
+  .sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:40px;}
+  .sec-num{font-family:'IBM Plex Mono'; color:var(--copper); font-size:0.85rem;}
+  .sec-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .about-grid p{color:var(--ink-soft); line-height:1.75; margin-bottom:16px;}
+  .lang-strength{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:8px;}
+  .mini-title{font-family:'IBM Plex Mono'; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--copper); margin-bottom:10px;}
+  .chip-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-family:'IBM Plex Mono'; font-size:0.74rem; padding:5px 10px; border:1px solid var(--ink-soft); border-radius:var(--radius); color:var(--ink-soft);}
+
+  /* skills schematic legend */
+  .skill-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px;}
+  .skill-card{background:var(--card); border:1px solid var(--ink); padding:20px 20px 22px;}
+  .skill-card h3{font-size:0.95rem; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .skill-card h3::before{content:""; width:8px; height:8px; background:var(--copper); border-radius:50%;}
+  .skill-card ul{list-style:none; font-size:0.86rem; color:var(--ink-soft); line-height:1.9;}
+
+  /* projects */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .proj-card{background:var(--card); border:1px solid var(--ink); padding:26px 24px; display:flex; flex-direction:column; gap:12px; transition:transform .15s, box-shadow .15s;}
+  .proj-card:hover{transform:translate(-3px,-3px); box-shadow:4px 4px 0 var(--blue);}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
+  .proj-num{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--copper); letter-spacing:0.06em;}
+  .proj-card h3{font-size:1.15rem;}
+  .proj-card p{color:var(--ink-soft); font-size:0.9rem; line-height:1.65;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px;}
+  .tag{font-family:'IBM Plex Mono'; font-size:0.68rem; padding:3px 8px; background:transparent; border:1px solid var(--ink-soft); color:var(--ink-soft);}
+
+  /* timeline: internship + certs */
+  .timeline{border-left:1px solid var(--ink); margin-left:6px; padding-left:28px; display:flex; flex-direction:column; gap:34px;}
+  .tl-item{position:relative;}
+  .tl-item::before{content:""; position:absolute; left:-33.5px; top:4px; width:11px; height:11px; background:var(--paper); border:2px solid var(--copper); border-radius:50%;}
+  .tl-date{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--copper); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;}
+  .tl-item h3{font-size:1.05rem; margin-bottom:6px;}
+  .tl-item p{color:var(--ink-soft); font-size:0.88rem; line-height:1.65; max-width:60ch;}
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
+  .pin-list{display:flex; flex-direction:column; gap:18px;}
+  .pin{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink); padding:14px 16px; border:1px solid var(--ink-soft); background:var(--card); transition:border-color .15s, transform .15s;}
+  .pin:hover, .pin:focus-visible{border-color:var(--copper); transform:translateX(3px);}
+  .pin-dot{width:9px; height:9px; border-radius:50%; background:var(--copper); flex-shrink:0;}
+  .pin-label{font-family:'IBM Plex Mono'; font-size:0.68rem; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.06em; display:block;}
+  .pin-value{font-size:0.92rem; font-weight:500;}
+
+  form{display:flex; flex-direction:column; gap:16px;}
+  .field label{display:block; font-family:'IBM Plex Mono'; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:6px;}
+  .field input, .field textarea{
+    width:100%; padding:12px 13px; background:var(--card); border:1px solid var(--ink-soft);
+    font-family:'IBM Plex Sans'; font-size:0.92rem; color:var(--ink); border-radius:var(--radius);
+    transition:border-color .15s;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue);}
+  .field textarea{resize:vertical; min-height:120px;}
+  .send-btn{align-self:flex-start; cursor:pointer;}
+  .form-note{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--ink-soft); margin-top:2px;}
+  #formStatus{font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--blue); min-height:18px;}
+
+  footer{padding:36px 0 48px; text-align:center;}
+  footer p{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--ink-soft); letter-spacing:0.03em;}
+
+  @media (max-width:820px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .hero{padding:64px 0 40px;}
+    .schema{max-width:320px; margin:0 auto;}
+    .skill-groups{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">VED<span>·</span>PATEL</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">Computer Engineering · Semester 5</div>
+      <h1>Building interfaces,<br>wired from the<br>ground up.</h1>
+      <p class="lead">I'm Ved Patel — a web developer and UI/UX designer studying Computer Engineering in Gujarat, India. I design in Figma, build with Flask and Bootstrap, and tinker with Arduino sensors on the side.</p>
+      <div class="hero-meta">
+        <span><b>CGPA</b> 9.63</span>
+        <span><b>Based in</b> Mehsana, Gujarat</span>
+        <span><b>Open to</b> Web Dev &amp; UI/UX internships</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View Projects →</a>
+        <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="schema reg" aria-hidden="true">
+      <span class="rb"></span><span class="rc"></span>
+      <svg viewBox="0 0 320 320">
+        <!-- connecting lines from center to each node -->
+        <path class="schema-line" d="M160,160 L160,50"/>
+        <path class="schema-line" d="M160,160 L266,110"/>
+        <path class="schema-line" d="M160,160 L266,210"/>
+        <path class="schema-line" d="M160,160 L160,270"/>
+        <path class="schema-line" d="M160,160 L54,210"/>
+        <path class="schema-line" d="M160,160 L54,110"/>
+        <path class="schema-pulse" d="M160,160 L160,50 M160,160 L266,110 M160,160 L266,210 M160,160 L160,270 M160,160 L54,210 M160,160 L54,110"/>
+        <g class="schema-center">
+          <circle cx="160" cy="160" r="34"/>
+          <text x="160" y="157" text-anchor="middle">VED</text>
+          <text x="160" y="169" text-anchor="middle" font-size="8">v2.4</text>
+        </g>
+        <g class="schema-node"><circle cx="160" cy="50" r="26"/><text x="160" y="47" text-anchor="middle">Web</text><text x="160" y="58" text-anchor="middle">Dev</text></g>
+        <g class="schema-node"><circle cx="266" cy="110" r="26"/><text x="266" y="107" text-anchor="middle">UI/</text><text x="266" y="118" text-anchor="middle">UX</text></g>
+        <g class="schema-node"><circle cx="266" cy="210" r="26"/><text x="266" y="207" text-anchor="middle">Android</text><text x="266" y="218" text-anchor="middle">Java</text></g>
+        <g class="schema-node"><circle cx="160" cy="270" r="26"/><text x="160" y="267" text-anchor="middle">IoT +</text><text x="160" y="278" text-anchor="middle">Arduino</text></g>
+        <g class="schema-node"><circle cx="54" cy="210" r="26"/><text x="54" y="207" text-anchor="middle">Data +</text><text x="54" y="218" text-anchor="middle">SQL</text></g>
+        <g class="schema-node"><circle cx="54" cy="110" r="26"/><text x="54" y="107" text-anchor="middle">Python</text><text x="54" y="118" text-anchor="middle">/ ML</text></g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<hr class="rule">
+<div class="tick-row"><span>00</span><span>MEHSANA, GUJARAT, IN</span><span>SCALE 1:1</span></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a Diploma Computer Engineering student at R.C. Technical Institute (2024–2027), currently in Semester 5 with a 9.63 CGPA. My work sits at the intersection of code and interface — I build the frontend, plan the backend, and design the screens in between.</p>
+        <p>Outside the browser, I work with Arduino and ESP32, wiring up sensors like DHT, LDR, PIR and ultrasonic modules — hardware experience that shapes how I think about interfaces: as systems with inputs, feedback, and state, not just static screens.</p>
+      </div>
+      <div>
+        <div class="lang-strength">
+          <div>
+            <div class="mini-title">Languages</div>
+            <div class="chip-list">
+              <span class="chip">English</span><span class="chip">Hindi</span><span class="chip">Gujarati</span>
+            </div>
+          </div>
+          <div>
+            <div class="mini-title">Strengths</div>
+            <div class="chip-list">
+              <span class="chip">Quick learner</span><span class="chip">Problem-solving</span><span class="chip">Teamwork</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <div class="mini-title">Education</div>
+          <p style="margin-bottom:4px;"><b>Diploma, Computer Engineering</b> — R.C. Technical Institute, 2024–2027 (CGPA 9.63)</p>
+          <p>Secondary School Certificate — 86%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="tick-row"><span>01</span><span>SKILLSET</span><span>REV. 2026</span></div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Technical Skills</h2></div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Web &amp; Software</h3>
+        <ul><li>HTML / CSS / JavaScript / Bootstrap</li><li>Python / Flask / Jinja2</li><li>Java, OOP fundamentals</li><li>MySQL, SQL, MongoDB</li><li>Git / GitHub</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Mobile &amp; Design</h3>
+        <ul><li>Android Studio, Android UI Layouts</li><li>Figma — wireframing, prototyping</li><li>User research, typography</li><li>Basic Machine Learning</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>IoT &amp; Hardware</h3>
+        <ul><li>Arduino, ESP32</li><li>DHT, LDR, PIR, MQ-2, Ultrasonic</li><li>Sensor interfacing</li><li>Cloud Computing basics</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="tick-row"><span>02</span><span>PROJECT LOG</span><span>QTY. 04</span></div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Projects</h2></div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top"><h3>BookBridge</h3><span class="proj-num mono">NO. 01</span></div>
+        <p>An online book exchange platform concept — frontend built for browsing and managing listings, with a planned Flask + MySQL backend and a database structure for users, books, and transactions.</p>
+        <div class="tag-row"><span class="tag">HTML/CSS/JS</span><span class="tag">Bootstrap</span><span class="tag">Flask</span><span class="tag">MySQL</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>NEXUS</h3><span class="proj-num mono">NO. 02</span></div>
+        <p>A personal AI voice assistant running locally to cut cloud dependency — combining Ollama for local inference with Whisper for speech recognition and Piper for text-to-speech.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Ollama</span><span class="tag">Whisper</span><span class="tag">Piper</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>Android Applications</h3><span class="proj-num mono">NO. 03</span></div>
+        <p>A set of Android app concepts built in Java — login/registration flows, a calculator, list and spinner views, and menu/event handling across Linear, Constraint, Relative and Frame layouts.</p>
+        <div class="tag-row"><span class="tag">Java</span><span class="tag">Android Studio</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top"><h3>IoT &amp; Arduino Projects</h3><span class="proj-num mono">NO. 04</span></div>
+        <p>Sensor-driven builds on Arduino and ESP32 using PIR, LDR, DHT, MQ-2 and ultrasonic modules — practicing digital/analog input handling and core IoT concepts.</p>
+        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">Sensors</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="tick-row"><span>03</span><span>TIMELINE</span><span>2025 — 2026</span></div>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Experience &amp; Certifications</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">15 – 30 June 2026 · Ahmedabad</div>
+        <h3>UI/UX Designing Intern — Sparks To Ideas</h3>
+        <p>Practiced wireframing, user research, typography and prototyping in Figma; designed interfaces for an online shopping app and a food-ordering app, and refined UI components into interactive prototypes.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">December 2025</div>
+        <h3>Entrepreneurship and Start-ups — SWAYAM</h3>
+        <p>Completed certification covering startup fundamentals and entrepreneurial thinking.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">July 2025</div>
+        <h3>HTML, CSS &amp; JavaScript for Web Developers — Coursera / Johns Hopkins University</h3>
+        <p>Completed a structured web fundamentals course covering core front-end development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="tick-row"><span>04</span><span>CONTACT</span><span>END OF SHEET</span></div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Get in Touch</h2></div>
+    <div class="contact-grid">
+      <div class="pin-list">
+        <a class="pin" href="mailto:pved95605@gmail.com"><span class="pin-dot"></span><span><span class="pin-label">Email</span><span class="pin-value">pved95605@gmail.com</span></span></a>
+        <a class="pin" href="tel:9408547637"><span class="pin-dot"></span><span><span class="pin-label">Phone</span><span class="pin-value">9408547637</span></span></a>
+        <a class="pin" href="https://linkedin.com/in/Vedpatel_COMP_RCTI_DTE" target="_blank" rel="noopener"><span class="pin-dot"></span><span><span class="pin-label">LinkedIn</span><span class="pin-value">Vedpatel_COMP_RCTI_DTE</span></span></a>
+        <a class="pin" href="https://github.com/patel1234-bit" target="_blank" rel="noopener"><span class="pin-dot"></span><span><span class="pin-label">GitHub</span><span class="pin-value">patel1234-bit</span></span></a>
+      </div>
+      <form id="contactForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary send-btn">Send Message →</button>
+        <p class="form-note">This form displays your message here — connect it to a service like Formspree to receive it by email.</p>
+        <p id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>DESIGNED &amp; BUILT BY VED PATEL — © 2026</p>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    document.getElementById('formStatus').textContent = 'Thanks' + (name ? ', ' + name : '') + ' — message captured. Wire this form to Formspree or a backend to actually deliver it.';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
